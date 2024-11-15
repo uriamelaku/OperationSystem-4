@@ -1,0 +1,107 @@
+omer-cohen@omer-cohen-VirtualBox:~/Desktop/OS_4/Q_6$ gdb ./hello
+GNU gdb (Ubuntu 15.0.50.20240403-0ubuntu1) 15.0.50.20240403-git
+Copyright (C) 2024 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+Type "show copying" and "show warranty" for details.
+This GDB was configured as "x86_64-linux-gnu".
+Type "show configuration" for configuration details.
+For bug reporting instructions, please see:
+<https://www.gnu.org/software/gdb/bugs/>.
+Find the GDB manual and other documentation resources online at:
+    <http://www.gnu.org/software/gdb/documentation/>.
+
+For help, type "help".
+Type "apropos word" to search for commands related to "word"...
+Reading symbols from ./hello...
+(gdb) target remote | vgdb --pid=15793
+Remote debugging using | vgdb --pid=15793
+relaying data between gdb and process 15793
+warning: remote target does not support file transfer, attempting to access files from local filesystem.
+Reading symbols from /lib64/ld-linux-x86-64.so.2...
+Reading symbols from /usr/lib/debug/.build-id/35/3e1b6cb0eebc08cf3ff812eae8a51b4efd684e.debug...
+0x000000000401f540 in _start () from /lib64/ld-linux-x86-64.so.2
+(gdb) break 4
+Breakpoint 1 at 0x1091dc: file hello.c, line 8.
+(gdb) break 7
+Note: breakpoint 1 also set at pc 0x1091dc.
+Breakpoint 2 at 0x1091dc: file hello.c, line 8.
+(gdb) break 10
+Breakpoint 3 at 0x1091ef: file hello.c, line 10.
+(gdb) continue
+Continuing.
+
+This GDB supports auto-downloading debuginfo from the following URLs:
+  <https://debuginfod.ubuntu.com>
+Enable debuginfod for this session? (y or [n]) y
+Debuginfod has been enabled.
+To make this setting permanent, add 'set debuginfod enabled on' to .gdbinit.
+Downloading separate debug info for /usr/libexec/valgrind/vgpreload_core-amd64-linux.so
+/usr/share/gdb/auto-load/valgrind-monitor-def.py:214: SyntaxWarning: invalid escape sequence '\['
+  if re.fullmatch("^0x[0123456789ABCDEFabcdef]+\[[^\[\]]+\]$", arg_str):
+Loaded /usr/share/gdb/auto-load/valgrind-monitor.py
+Type "help valgrind" for more info.
+Downloading separate debug info for /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so
+                                                                                   
+Breakpoint 1, main (argc=4, argv=0x1ffefff688) at hello.c:8
+warning: Source file is more recent than executable.
+8       int i, length; length = 0;
+(gdb) continue
+Continuing.
+
+Breakpoint 3, main (argc=4, argv=0x1ffefff688) at hello.c:10
+10      length += strlen(argv[i])+1;
+(gdb) next
+11      string = malloc(length+1);
+(gdb) next
+13      if(string_so_far != (char *)0)
+(gdb) next
+14      strcpy(string, string_so_far);
+(gdb) step
+Downloading source file /usr/src/valgrind-1:3.22.0-0ubuntu3/memcheck/../shared/vg_replace_strmem.c
+_vgr20080ZU_libcZdsoZa_strcpy (dst=0x4a83040 "", src=0x1ffefff640 "\340\220\020")  
+    at ../shared/vg_replace_strmem.c:561
+warning: 561    ../shared/vg_replace_strmem.c: No such file or directory
+(gdb) continue
+Continuing.
+
+Program received signal SIGTRAP, Trace/breakpoint trap.
+_vgr20080ZU_libcZdsoZa_strcpy (dst=0x4a83040 "", src=0x1ffefff640 "\340\220\020")
+    at ../shared/vg_replace_strmem.c:561
+561     in ../shared/vg_replace_strmem.c
+(gdb) continue
+Continuing.
+
+Program received signal SIGTRAP, Trace/breakpoint trap.
+0x000000000484f3b5 in is_overlap (srclen=4, dstlen=4, src=0x1ffefff640, 
+    dst=0x4a83040) at ../shared/vg_replace_strmem.c:133
+133     in ../shared/vg_replace_strmem.c
+(gdb) continue
+Continuing.
+
+Program received signal SIGTRAP, Trace/breakpoint trap.
+0x000000000484f3ba in is_overlap (srclen=4, dstlen=4, src=0x1ffefff640, 
+    dst=0x4a83040) at ../shared/vg_replace_strmem.c:142
+142     in ../shared/vg_replace_strmem.c
+(gdb) run
+The "remote" target does not support "run".  Try "help target" or "continue".
+(gdb) run
+The "remote" target does not support "run".  Try "help target" or "continue".
+(gdb) run
+The "remote" target does not support "run".  Try "help target" or "continue".
+(gdb) continue
+Continuing.
+
+Program received signal SIGTRAP, Trace/breakpoint trap.
+0x000000000484f3c9 in _vgr20080ZU_libcZdsoZa_strcpy (dst=<optimized out>, 
+    src=<optimized out>) at ../shared/vg_replace_strmem.c:561
+561     in ../shared/vg_replace_strmem.c
+(gdb) step
+main (argc=4, argv=0x1ffefff688) at hello.c:16
+16      strcat(string, argv[i]);
+(gdb) step
+_vgr20030ZU_libcZdsoZa_strcat (dst=0x4a83040 "\340\220\020", 
+    src=0x1ffefffacf "./hello") at ../shared/vg_replace_strmem.c:334
+warning: 334    ../shared/vg_replace_strmem.c: No such file or directory
+(gdb) 

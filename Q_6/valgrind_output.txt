@@ -1,0 +1,57 @@
+==15793== Memcheck, a memory error detector
+==15793== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==15793== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==15793== Command: ./hello arg1 arg2 arg3
+==15793== 
+==15793== (action at startup) vgdb me ... 
+==15793== 
+==15793== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==15793==   /path/to/gdb ./hello
+==15793== and then give GDB the following command
+==15793==   target remote | /usr/bin/vgdb --pid=15793
+==15793== --pid is optional if only one valgrind process is running
+==15793== 
+==15793== Conditional jump or move depends on uninitialised value(s)
+==15793==    at 0x109234: main (hello.c:13)
+==15793== 
+==15793== (action on error) vgdb me ... 
+==15793== Continuing ...
+==15793== Use of uninitialised value of size 8
+==15793==    at 0x484F374: strcpy (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15793==    by 0x109248: main (hello.c:14)
+==15793== 
+==15793== (action on error) vgdb me ... 
+==15793== Continuing ...
+==15793== Conditional jump or move depends on uninitialised value(s)
+==15793==    at 0x484F3B5: strcpy (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15793==    by 0x109248: main (hello.c:14)
+==15793== 
+==15793== (action on error) vgdb me ... 
+==15793== Continuing ...
+==15793== Conditional jump or move depends on uninitialised value(s)
+==15793==    at 0x484F3BA: strcpy (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15793==    by 0x109248: main (hello.c:14)
+==15793== 
+==15793== (action on error) vgdb me ... 
+==15793== Continuing ...
+==15793== Conditional jump or move depends on uninitialised value(s)
+==15793==    at 0x484F3C9: strcpy (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15793==    by 0x109248: main (hello.c:14)
+==15793== 
+==15793== (action on error) vgdb me ... 
+==15793== Continuing ...
+==15793== 
+==15793== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==15793==   /path/to/gdb ./hello
+==15793== and then give GDB the following command
+==15793==   target remote | /usr/bin/vgdb --pid=15793
+==15793== --pid is optional if only one valgrind process is running
+==15793== 
+==15793== Invalid write of size 1
+==15793==    at 0x484EF5C: strcat (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15793==    by 0x109277: main (hello.c:16)
+==15793==  Address 0x4a83049 is 0 bytes after a block of size 9 alloc'd
+==15793==    at 0x4846828: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==15793==    by 0x10922A: main (hello.c:11)
+==15793== 
+==15793== (action on error) vgdb me ... 
